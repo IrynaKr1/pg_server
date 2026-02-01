@@ -1,0 +1,46 @@
+### 200 {}
+GET http://localhost:5000/api/users/4
+
+### 404
+GET http://localhost:5000/api/users/100
+
+### 201 {} 
+POST http://localhost:5000/api/users
+Content-Type: application/json
+
+{
+    "first_name": "Taras3",
+    "last_name": "Tarasenko3",
+    "email": "tt@email.test",
+    "tel": "+380234569980"
+}
+
+###422
+
+POST http://localhost:5000/api/users
+Content-Type: application/json
+
+{
+    "first_name": "Taras1",
+    "last_name": "Tarasenko1",
+    "email": "tt1@email.test",
+    "tel": "+380234567890"
+}
+
+### 422
+
+POST http://localhost:5000/api/users
+Content-Type: application/json
+
+{
+    "first_name": "Taras1",
+    "last_name": "Tarasenko1",
+    "email": "tt1@email.test",
+    "tel": "+380234567"
+}
+
+### 200 {}
+GET http://localhost:5000/api/users
+
+###
+GET http://localhost:5000/api/users?page=2&results=5
