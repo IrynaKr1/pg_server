@@ -21,10 +21,10 @@ POST http://localhost:5000/api/users
 Content-Type: application/json
 
 {
-    "first_name": "Taras1",
-    "last_name": "Tarasenko1",
+    "first_name": "Taras5",
+    "last_name": "Tarasenko5",
     "email": "tt1@email.test",
-    "tel": "+380234567890"
+    "tel": "+380456567890"
 }
 
 ### 422
@@ -44,3 +44,14 @@ GET http://localhost:5000/api/users
 
 ###
 GET http://localhost:5000/api/users?page=2&results=5
+
+###
+PATCH http://localhost:5000/api/users/1
+Content-Type: application/json
+
+{
+    "first_name": "Taras5",
+    "last_name": "Test",
+    "email": "tt1@email.test",
+    "tel": "+380456567000"
+}
