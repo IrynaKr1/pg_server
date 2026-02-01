@@ -68,7 +68,7 @@ class User {
       const deletedUser = await User.pool.query(deleteQuery);
       return deletedUser.rows[0];
     } catch (error) {
-      console.log('error', error);
+      throw new Error(error.detail);
     }
   }
 }

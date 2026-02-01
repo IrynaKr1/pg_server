@@ -55,3 +55,6 @@ Content-Type: application/json
     "email": "tt1@email.test",
     "tel": "+380456567000"
 }
+
+###
+DELETE http://localhost:5000/api/users/5
