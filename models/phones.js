@@ -37,13 +37,55 @@ class Phones {
       const phones = await Phones.pool.query(selectQuery, values);
       return phones.rows;
     } catch (error) {
-        console.log('error', error);
+      console.log('error', error);
     }
   }
 
-  static getPhoneById () {}
-  static deletePhoneById () {}
-  static updatePhoneById () {}
+  static async getPhoneById (id) {
+    try {
+      const selectQuery = `
+      SELECT *
+      FROM phones
+      WHERE id = $1`;
+      const phoneById = await Phones.pool.query(selectQuery, id);
+      return phoneById.rows[0];
+    } catch (error) {
+      console.log('error', error);
+    }
+  }
+
+  static async deletePhoneById (id) {
+    try {
+      const deleteQuery = `
+      DELETE FROM phones
+      WHERE id = $1
+      RETURNING *`;
+      const deletedPhone = await Phones.pool.query(deleteQuery, id);
+      return deletedPhone.rows[0];
+    } catch (error) {
+      console.log('error', error);
+    }
+  }
+
+  static async updatePhoneById (
+    id,
+    { brand, model, price, color, manufactured_year }
+  ) {
+    try {
+      const updateQuery = `
+    UPDATE phones
+    SET brand = $1, model = $2, price = $3, color = $4, manufactured_year = $5
+    WHERE id = $6
+    RETURNING *`;
+
+      const values = [brand, model, price, color, manufactured_year, id];
+      const updatedPhone = await Phones.pool.query(updateQuery, values);
+
+      return updatedPhone.rows[0];
+    } catch (error) {
+      console.log('error', error);
+    }
+  }
 }
 
 module.exports = Phones;
