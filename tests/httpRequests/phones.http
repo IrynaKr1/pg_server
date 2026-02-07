@@ -16,6 +16,19 @@ Content-Type: application/json
     "manufacturedYear": "2022"
 }
 
+### Validation Error
+POST http://localhost:5000/api/phones
+Content-Type: application/json
+
+{
+    "phoneBrand": "A",
+    "phoneModel": "iPhone 14 Pro Max",
+    "phonePrice": "1200.00",
+    "phoneColor": "Silver",
+    "manufacturedYear": "2022"
+}
+
+
 ### 200 {}
 GET http://localhost:5000/api/phones
 

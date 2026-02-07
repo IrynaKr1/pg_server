@@ -5,7 +5,7 @@ const phonesRouter = Router();
 
 phonesRouter
   .route('/')
-  .post(phoneControllers.createPhone)
+  .post(validation.validatePhoneOnCreate, phoneControllers.createPhone)
   .get(pagination.paginatePhones, phoneControllers.getAllPhones);
 
 phonesRouter
