@@ -1,4 +1,4 @@
-class Phones {
+class Phone {
   static async create ({
     phoneBrand,
     phoneModel,
@@ -8,7 +8,7 @@ class Phones {
   }) {
     try {
       const insertPhoneQuery = `
-        INSERT INTO (brand, model, price, color, manufactured_year)
+        INSERT INTO phones (brand, model, price, color, manufactured_year)
         VALUES ($1, $2, $3, $4, $5)
         RETURNING *`;
 
@@ -20,7 +20,7 @@ class Phones {
         manufacturedYear,
       ];
 
-      const createdPhones = await Phones.pool.query(insertPhoneQuery, values);
+      const createdPhones = await Phone.pool.query(insertPhoneQuery, values);
       return createdPhones.rows[0];
     } catch (error) {
       console.log('error', error);
@@ -34,7 +34,7 @@ class Phones {
         LIMIT $1 OFFSET $2
         `;
       const values = [limit, offset];
-      const phones = await Phones.pool.query(selectQuery, values);
+      const phones = await Phone.pool.query(selectQuery, values);
       return phones.rows;
     } catch (error) {
       console.log('error', error);
@@ -47,7 +47,7 @@ class Phones {
       SELECT *
       FROM phones
       WHERE id = $1`;
-      const phoneById = await Phones.pool.query(selectQuery, id);
+      const phoneById = await Phone.pool.query(selectQuery, [id]);
       return phoneById.rows[0];
     } catch (error) {
       console.log('error', error);
@@ -60,7 +60,7 @@ class Phones {
       DELETE FROM phones
       WHERE id = $1
       RETURNING *`;
-      const deletedPhone = await Phones.pool.query(deleteQuery, id);
+      const deletedPhone = await Phone.pool.query(deleteQuery, [id]);
       return deletedPhone.rows[0];
     } catch (error) {
       console.log('error', error);
@@ -79,7 +79,7 @@ class Phones {
     RETURNING *`;
 
       const values = [brand, model, price, color, manufactured_year, id];
-      const updatedPhone = await Phones.pool.query(updateQuery, values);
+      const updatedPhone = await Phone.pool.query(updateQuery, values);
 
       return updatedPhone.rows[0];
     } catch (error) {
@@ -88,4 +88,4 @@ class Phones {
   }
 }
 
-module.exports = Phones;
+module.exports = Phone;

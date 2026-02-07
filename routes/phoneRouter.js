@@ -1,14 +1,15 @@
 const { Router } = require('express');
+const { phoneControllers } = require('./../controllers');
 const phonesRouter = Router();
 
 phonesRouter
   .route('/')
-  .post((req, res) => {})
-  .get((req, res) => {});
+  .post(phoneControllers.createPhone)
+  .get((req, res, nex) => {});
 
 phonesRouter
   .route('/:id')
-  .get((req, res) => {})
+  .get(phoneControllers.getPhoneById)
   .patch((req, res) => {})
   .delete((req, res) => {});
 

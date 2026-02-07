@@ -1,6 +1,6 @@
 const { Pool } = require('pg');
 const User = require('./users');
-const Phones = require('./phones');
+const Phone = require('./phones');
 
 const connectionOptions = {
   user: 'postgres',
@@ -19,6 +19,6 @@ pool.connect(err => {
 process.on('beforeExit', () => pool.end());
 
 User.pool = pool;
-Phones.pool = pool;
+Phone.pool = pool;
 
-module.exports = { User, Phones };
+module.exports = { User, Phone };
