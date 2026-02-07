@@ -12,6 +12,6 @@ phonesRouter
   .route('/:id')
   .get(phoneControllers.getPhoneById)
   .patch((req, res) => {})
-  .delete((req, res) => {});
+  .delete(phoneControllers.deletePhoneById);
 
 module.exports = phonesRouter;
