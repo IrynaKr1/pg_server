@@ -23,7 +23,7 @@ class Phone {
       const createdPhones = await Phone.pool.query(insertPhoneQuery, values);
       return createdPhones.rows[0];
     } catch (error) {
-      console.log('error', error);
+      throw new Error(err.detail);
     }
   }
   static async getAllPhones ({ limit, offset }) {
@@ -37,7 +37,7 @@ class Phone {
       const phones = await Phone.pool.query(selectQuery, values);
       return phones.rows;
     } catch (error) {
-      console.log('error', error);
+      throw new Error(err.detail);
     }
   }
 
@@ -50,7 +50,7 @@ class Phone {
       const phoneById = await Phone.pool.query(selectQuery, [id]);
       return phoneById.rows[0];
     } catch (error) {
-      console.log('error', error);
+      throw new Error(err.detail);
     }
   }
 
@@ -63,7 +63,7 @@ class Phone {
       const deletedPhone = await Phone.pool.query(deleteQuery, [id]);
       return deletedPhone.rows[0];
     } catch (error) {
-      console.log('error', error);
+      throw new Error(err.detail);
     }
   }
 
@@ -83,7 +83,7 @@ class Phone {
 
       return updatedPhone.rows[0];
     } catch (error) {
-      console.log('error', error);
+      throw new Error(err.detail);
     }
   }
 }
